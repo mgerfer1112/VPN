@@ -17,6 +17,7 @@ rm -f /home/ubuntu/easy-rsa/vars
 cp ../vars /home/$SUDO_USER/easy-rsa
 
 sed -i "s#\"Country\"#\"$Country\"#" /home/$SUDO_USER/easy-rsa/vars
+sed -i "s#\"Province\"#\"$Province\"#" /home/$SUDO_USER/easy-rsa/vars
 sed -i "s#\"City\"#\"$City\"#" /home/$SUDO_USER/easy-rsa/vars
 sed -i "s#\"Org\"#\"$Org\"#" /home/$SUDO_USER/easy-rsa/vars
 sed -i "s#\"MAIL\"#\"$MAIL\"#" /home/$SUDO_USER/easy-rsa/vars
