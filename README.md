@@ -13,3 +13,8 @@ Archivo de configuración en Visual Code para poder trabajar con SSH:
 En HostName ponemos nuestra IP pública, y en IdentifyFile nuestra clave PEM.  
 
 ![image](https://github.com/user-attachments/assets/db214b45-2222-4240-95cb-4b75603f37ae)  
+
+
+![alt text](Imágenes\image.png)
+
+![alt text](Imágenes\permisos.png)
