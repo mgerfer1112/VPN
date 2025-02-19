@@ -1,4 +1,7 @@
 # VPN
+
+[🔧 En proceso - Early Stage]
+
 En primer lugar, vamos a crear las máquinas virtuales en AWS. Necesitaremos 3 máquinas:
 
 └── Máquinas virtuales  
