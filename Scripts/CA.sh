@@ -27,4 +27,4 @@ sed -i "s#\"DIGEST\"#\"$DIGEST\"#" /home/$SUDO_USER/easy-rsa/vars
 
 
 #Creación del par de claves
-sudo /home/$SUDO_USER/easy-rsa/easyrsa build-ca
+sudo EASYRSA_PKI="$EASYRSA_PKI" /home/$SUDO_USER/easy-rsa/easyrsa build-ca
