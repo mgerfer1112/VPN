@@ -1,0 +1,4 @@
+
+set_var EASYRSA_ALGO           "ALGO"
+set_var EASYRSA_DIGEST         "DIGEST"
+export EASYRSA_PKI="/home/$SUDO_USER/easy-rsa/pki"
