@@ -27,11 +27,16 @@ rm -f /home/$SUDO_USER/easy-rsa/pki/reqs/server.req
 # Importar la solicitud de certificado
 sudo EASYRSA_PKI="/home/$SUDO_USER/easy-rsa/pki" /home/$SUDO_USER/easy-rsa/easyrsa import-req /tmp/server.req server
 
-
 #Firmar
 sudo EASYRSA_PKI="$EASYRSA_PKI" /home/$SUDO_USER/easy-rsa/easyrsa sign-req server server
 
-# copie los archivos server.crty ca.crtdel servidor CA al servidor OpenVPN:
+# copie los archivos server.crt y ca.crt del servidor CA al servidor OpenVPN:
+
+scp /home/$SUDO_USER/easy-rsa/pki/issued/server.crt $UsuarioVPN@$IPPrivadaVPN:/tmp
+scp /home/$SUDO_USER/easy-rsa/pki/ca.crt $UsuarioVPN@$IPPrivadaVPN:/tmp
+
+
+#Activar si se usa clave privada
 scp -i $RutaPEM2 /home/$SUDO_USER/easy-rsa/pki/issued/server.crt $UsuarioVPN@$IPPrivadaVPN:/tmp
 scp -i $RutaPEM2 /home/$SUDO_USER/easy-rsa/pki/ca.crt $UsuarioVPN@$IPPrivadaVPN:/tmp
 
