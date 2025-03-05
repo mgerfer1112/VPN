@@ -35,9 +35,16 @@ sudo sysctl -p
 # Verificación del reenvío de IP
 echo "Reenvío de IP habilitado: $(sysctl net.ipv4.ip_forward)"
 
-
-sudo rm -rf /etc/ufw/before.rules
-sudo cp /home/$SUDO_USER/VPN/Scripts/before.rules /etc/ufw/before.rules
+#Añadimos las reglas de OpenVPN a la configuración
+echo "" >> /etc/ufw/before.rules
+echo "# START OPENVPN RULES" >> /etc/ufw/before.rules
+echo "# NAT table rules" >> /etc/ufw/before.rules
+echo "*nat" >> /etc/ufw/before.rules
+echo ":POSTROUTING ACCEPT [0:0]" >> /etc/ufw/before.rules
+echo "# Allow traffic from OpenVPN client to INTERFACE (change to the interface you discovered!)" >> /etc/ufw/before.rules
+echo "-A POSTROUTING -s IPVPN -o INTERFACE -j MASQUERADE" >> /etc/ufw/before.rules
+echo "COMMIT" >> /etc/ufw/before.rules
+echo "# END OPENVPN RULES" >> /etc/ufw/before.rules
 
 # Reemplazar las variables en el archivo /etc/ufw/before.rules
 sudo sed -i "s#IPVPN#$IPVPN#" /etc/ufw/before.rules
