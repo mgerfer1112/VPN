@@ -13,7 +13,7 @@ apt update -y
 apt upgrade -y  
 
 # Instalamos Openvpn y easy-rsa
-sudo apt install openvpn easy-rsa
+sudo apt install openvpn easy-rsa -y
 
 # Eliminamos cualquier instalación previa de easy-rsa
 rm -rf /home/$SUDO_USER/easy-rsa/
@@ -50,6 +50,9 @@ chmod 700 /home/$SUDO_USER/easy-rsa/pki
 # Generación de la solicitud de certificado
 EASYRSA_VARS_FILE=/home/$SUDO_USER/easy-rsa/vars /home/$SUDO_USER/easy-rsa/easyrsa gen-req server nopass
 
-cp /home/$SUDO_USER/easy-rsa/pki/private/server.key /etc/openvpn/server/
+#Solo si es necesario, no debería serlo.
+#cp /home/$SUDO_USER/easy-rsa/pki/private/server.key /etc/openvpn/server/
 
-scp -i $RutaPEM /home/$SUDO_USER/easy-rsa/pki/reqs/server.req $UsuarioCA@$IPPrivadaCA:/tmp 
+#Activar si es con clave privada y desactivar el anterior
+#scp -i $RutaPEM /home/$SUDO_USER/easy-rsa/pki/reqs/server.req $UsuarioCA@$IPPrivadaCA:/tmp 
+scp /home/$SUDO_USER/easy-rsa/pki/reqs/server.req $UsuarioCA@$IPPrivadaCA:/tmp 
