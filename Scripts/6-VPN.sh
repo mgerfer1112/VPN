@@ -13,14 +13,14 @@ apt update -y
 apt upgrade -y  
 
 # Copiar el certificado del cliente al directorio de claves del cliente
-#cp /tmp/client1.crt /home/$SUDO_USER/client-configs/keys/
+cp /tmp/client1.crt /home/$SUDO_USER/client-configs/keys/
 
 # Copiar también los archivos ta.key y ca.crt al directorio de claves del cliente
-#cp /home/$SUDO_USER/easy-rsa/ta.key /home/$SUDO_USER/client-configs/keys/
-#cp /etc/openvpn/server/ca.crt /home/$SUDO_USER/client-configs/keys/
+cp /home/$SUDO_USER/easy-rsa/ta.key /home/$SUDO_USER/client-configs/keys/
+cp /etc/openvpn/server/ca.crt /home/$SUDO_USER/client-configs/keys/
 
 # Configuramos los permisos adecuados para el directorio de claves del cliente
-# chown $SUDO_USER:$SUDO_USER /home/$SUDO_USER/client-configs/keys/*
+chown $SUDO_USER:$SUDO_USER /home/$SUDO_USER/client-configs/keys/*
 
 rm -rf /etc/openvpn/server/server.conf
 # Copiar el archivo de configuración de muestra de OpenVPN
@@ -50,14 +50,14 @@ sudo sed -i "s#RutaSERVERKEY#$RutaSERVERKEY#" /etc/openvpn/server/server.conf
 sudo sed -i 's/DEFAULT_FORWARD_POLICY="DROP"/DEFAULT_FORWARD_POLICY="ACCEPT"/' /etc/default/ufw
 
 #Como estoy en AWS no lo lanzo, abro los puertos
-#sudo ufw allow 1194/udp
-#sudo ufw allow OpenSSH
-#sudo ufw disable
-#sudo ufw enable
+sudo ufw allow 1194/udp
+sudo ufw allow OpenSSH
+sudo ufw disable
+sudo ufw enable
 
 
 sudo mv /etc/openvpn/server/server.conf /etc/openvpn/server.conf
 
 sudo systemctl -f enable openvpn-server@server.service
 
- sudo systemctl start openvpn-server@server.service
+sudo systemctl start openvpn-server@server.service
